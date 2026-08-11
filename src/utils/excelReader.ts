@@ -92,8 +92,6 @@ function getCellString(cell: ExcelJS.Cell): string {
 //test if it reads properly by typing npx tsx src/utils/excelReader.ts
 readChallengeData()
   .then((rows) => {
-    console.log(`Successfully loaded ${rows.length} records.`);
-    console.log('First record:');
     console.dir(rows[0], { depth: null });
   })
   .catch((error) => {

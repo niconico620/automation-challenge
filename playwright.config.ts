@@ -3,7 +3,7 @@ import { defineConfig, devices } from '@playwright/test';
 export default defineConfig({
   testDir: './tests',
 
-  timeout: 60_000,
+  timeout: 10 * 60 * 1000,
 
   expect: {
     timeout: 10_000,
@@ -19,8 +19,6 @@ export default defineConfig({
   use: {
     baseURL: 'https://www.theautomationchallenge.com',
 
-    browserName: 'chromium',
-
     headless: false,
 
     screenshot: 'only-on-failure',
@@ -33,5 +31,18 @@ export default defineConfig({
       width: 1280,
       height: 900,
     },
+    launchOptions: {
+      args: ['--disable-http2'],
+    },
   },
+
+  projects: [
+    {
+      name: 'Google Chrome',
+      use: {
+        ...devices['Desktop Chrome'],
+        channel: 'chrome',
+      },
+    },
+  ],
 });
